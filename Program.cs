@@ -1,261 +1,270 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 
 namespace _15PR_Kolbazov_RPM
 {
-    public abstract class Command
+    public abstract class Command   // Абстрактный класс Command.
     {
-        public abstract void Execute();
+        public abstract void Execute(); // Абстрактный метод Execute(), который будет выполнять команду.
     }
-    public class LightOnCommand : Command
+    public class LightOnCommand : Command   // Класс LightOnCommand который наследуется от Command.
     {
         private Light light;
         public LightOnCommand(Light light)
         {
             this.light = light;
         }
-        public override void Execute()
+        public override void Execute()  // Реализация метода Execute().
+
         {
             light.On();
         }
     }
-    public class LightOffCommand : Command
+    public class LightOffCommand : Command  // Класс LightOffCommand который наследуется от Command.
     {
         private Light light;
         public LightOffCommand(Light light)
         {
             this.light = light;
         }
-        public override void Execute()
+        public override void Execute()  // Реализация метода Execute().
         {
             light.Off();
         }
     }
-    public class LightSettingsCommand : Command
+    public class LightSettingsCommand : Command // Класс LightSettingsCommand который наследуется от Command.
     {
         private Light light;
         public LightSettingsCommand(Light light)
         {
             this.light = light;
         }
-        public override void Execute()
+        public override void Execute()  // Реализация метода Execute().
         {
             light.Settings();
         }
     }
-    public class AirConditionerOnCommand : Command
+    public class AirConditionerOnCommand : Command  // Класс AirConditionerOnCommand который наследуется от Command.
     {
         private AirConditioner airConditioner;
         public AirConditionerOnCommand(AirConditioner airConditioner)
         {
             this.airConditioner = airConditioner;
         }
-        public override void Execute()
+        public override void Execute()  // Реализация метода Execute().
         {
             airConditioner.On();
         }
     }
-    public class AirConditionerOffCommand : Command
+    public class AirConditionerOffCommand : Command // Класс AirConditionerOffCommand который наследуется от Command.
     {
         private AirConditioner airConditioner;
         public AirConditionerOffCommand(AirConditioner airConditioner)
         {
             this.airConditioner = airConditioner;
         }
-        public override void Execute()
+        public override void Execute()  // Реализация метода Execute().
         {
             airConditioner.Off();
         }
     }
-    public class AirConditionerSettingsCommand : Command
+    public class AirConditionerSettingsCommand : Command    // Класс AirConditionerSettingsCommand который наследуется от Command.
     {
         private AirConditioner airConditioner;
         public AirConditionerSettingsCommand(AirConditioner airConditioner)
         {
             this.airConditioner = airConditioner;
         }
-        public override void Execute()
+        public override void Execute()  // Реализация метода Execute().
         {
             airConditioner.Settings();
         }
     }
-    public class TVOnCommand : Command
+    public class TVOnCommand : Command  // Класс TVOnCommand который наследуется от Command.
     {
         private TV tv;
         public TVOnCommand(TV tv)
         {
             this.tv = tv;
         }
-        public override void Execute()
+        public override void Execute()  // Реализация метода Execute().
         {
             tv.On();
         }
     }
-    public class TVOffCommand : Command
+    public class TVOffCommand : Command // Класс TVOffCommand который наследуется от Command.
     {
         private TV tv;
         public TVOffCommand(TV tv)
         {
             this.tv = tv;
         }
-        public override void Execute()
+        public override void Execute()  // Реализация метода Execute().
         {
             tv.Off();
         }
     }
-    public class TVSettingsCommand : Command
+    public class TVSettingsCommand : Command    // Класс TVSettingsCommand который наследуется от Command.
     {
         private TV tv;
         public TVSettingsCommand(TV tv)
         {
             this.tv = tv;
         }
-        public override void Execute()
+        public override void Execute()  // Реализация метода Execute().
         {
             tv.Settings();
         }
 
     }
-    public class Light
+    public class Light  // Класс Light
     {
-        public void On()
+        public void On()    // Метод для включения
         {
             Console.WriteLine("Свет включен!");
         }
-        public void Off()
+        public void Off()   // Метод для выключения
         {
             Console.WriteLine("Свет выключен!");
         }
-        public void Settings()
+        public void Settings()  // Метод для изменения параметров
         {
             Console.WriteLine("Изменение параметров света!");
         }
     }
-    public class AirConditioner
+    public class AirConditioner // Класс AirConditioner
     {
-        public void On()
+        public void On()    // Метод для включения
         {
             Console.WriteLine("Кондиционер включен!");
         }
-        public void Off()
+        public void Off()   // Метод для выключения
         {
             Console.WriteLine("Кондиционер выключен!");
         }
-        public void Settings()
+        public void Settings()  // Метод для изменения параметров
         {
             Console.WriteLine("Изменение параметров кондиционера!");
         }
     }
-    public class TV
+    public class TV // Класс TV
     {
-        public void On()
+        public void On()    // Метод для включения
         {
             Console.WriteLine("Телевизор включен!");
         }
-        public void Off()
+        public void Off()   // Метод для выключения
         {
             Console.WriteLine("Телевизор выключен!");
         }
-        public void Settings()
+        public void Settings()  // Метод для изменения параметров
         {
             Console.WriteLine("Изменение параметров телевизора!");
         }
     }
-    public class RemoteControl
+    public class RemoteControl  // Класс RemoteControl
     {
-        private Command command;
-        public void SetCommand(Command command)
+        private Command command;    // Приватное поле command типа Command, которое будет хранить текущую команду.
+        public void SetCommand(Command command) // Метод SetCommand(Command command), который будет устанавливать текущую команду.
         {
             this.command = command;
         }
-        public void PressButton()
+        public void PressButton()   // Метод PressButton(), который будет выполнять текущую команду.
         {
             command.Execute();
         }
     }
     // --------------------------------------------------------------------------
-    public abstract class TaxCalculationStrategy
+    public abstract class TaxCalculationStrategy    // Абстрактный класс TaxCalculationStrategy
     {
-        public abstract decimal CalculateTax(decimal income);
+        public abstract decimal CalculateTax(decimal income);   // Абстрактный метод CalculateTax(decimal income), который будет рассчитывать налог на доходы.
     }
-    public class ProgressiveTaxCalculationStrategy : TaxCalculationStrategy
+    public class ProgressiveTaxCalculationStrategy : TaxCalculationStrategy // Класс ProgressiveTaxCalculationStrategy который наследуются от TaxCalculationStrategy
     {
-        public override decimal CalculateTax(decimal income)
+        public override decimal CalculateTax(decimal income)    // Реализация метода CalculateTax(decimal income)
         {
-            if (income <= 10000)
+            if (income <= 2400000)
             {
-                return income * 0.1m; // 10% для дохода до 10,000
+                return income * 0.13m;
             }
-            else if (income <= 30000)
+            else if (income > 2400000 && income <= 5000000)
             {
-                return 1000 + (income - 10000) * 0.2m; // 20% для дохода от 10,001 до 30,000
+                return income * 0.15m;
+            }
+            else if (income > 5000000 && income <= 20000000)
+            {
+                return income * 0.18m;
+            }
+            else if (income > 20000000 && income <= 50000000)
+            {
+                return income * 0.20m;
             }
             else
             {
-                return 5000 + (income - 30000) * 0.3m; // 30% для дохода свыше 30,000
+                return income * 0.22m;
             }
         }
     }
-    public class FixedRateTaxCalculationStrategy : TaxCalculationStrategy
+    public class FixedRateTaxCalculationStrategy : TaxCalculationStrategy   // Класс FixedRateTaxCalculationStrategy который наследуются от TaxCalculationStrategy
     {
         private decimal fixedRate;
         public FixedRateTaxCalculationStrategy(decimal fixedRate)
         {
             this.fixedRate = fixedRate;
         }
-        // Реализация метода CalculateTax() для фиксированной ставки налога
-        public override decimal CalculateTax(decimal income)
+        public override decimal CalculateTax(decimal income)    // Реализация метода CalculateTax(decimal income)
         {
-            return income * fixedRate; // Расчет налога по фиксированной ставке
+            return income * fixedRate;
         }
     }
-    public class TaxCalculator
+    public class TaxCalculator  // Класс TaxCalculator
     {
-        private TaxCalculationStrategy taxCalculationStrategy;
-        public void SetTaxCalculationStrategy(TaxCalculationStrategy taxCalculationStrategy)
+        private TaxCalculationStrategy taxCalculationStrategy;  // Приватное поле taxCalculationStrategy типа TaxCalculationStrategy, которое будет хранить текущий алгоритм расчета налогов.
+        public void SetTaxCalculationStrategy(TaxCalculationStrategy taxCalculationStrategy)    // Метод SetTaxCalculationStrategy(TaxCalculationStrategy taxCalculationStrategy), который будет устанавливать текущий алгоритм расчета налогов.
         {
             this.taxCalculationStrategy = taxCalculationStrategy;
         }
-        public decimal CalculateTax(decimal income)
+        public decimal CalculateTax(decimal income) // Метод CalculateTax(decimal income), который будет рассчитывать налог на доходы с использованием текущего алгоритма расчета налогов.
         {
             if (taxCalculationStrategy == null)
             {
-                throw new InvalidOperationException("Стратегия расчёта налогов не установлена!");
+                throw new Exception("Стратегия расчёта налогов не установлена!");
             }
-            return taxCalculationStrategy.CalculateTax(income); // Выполнение расчета налога 
+            return taxCalculationStrategy.CalculateTax(income);
         }
     }
     // --------------------------------------------------------------------------
-    public abstract class Observer
+    public abstract class Observer  // Абстрактный класс Observer
     {
-        public abstract void Update(string message);
+        public abstract void Update(string message);    // Абстрактный метод Update(string message), который будет вызываться при изменении состояния сервера.
     }
-    public class Logger : Observer
+    public class Logger : Observer  // Класс Logger который наследуется от Observer
     {
-        public override void Update(string message)
+        public override void Update(string message) // Реализация метода Update(string message) для каждого подписчика.
         {
-            Console.WriteLine($"[LOG] {message}");
+            Console.WriteLine($"Логгер: {message}");
         }
     }
-    public class EmailNotifier : Observer
+    public class EmailNotifier : Observer   // Класс EmailNotifier который наследуется от Observer
     {
-        public override void Update(string message)
+        public override void Update(string message) // Реализация метода Update(string message) для каждого подписчика.
         {
-            Console.WriteLine($"[EMAIL NOTIFICATION] {message}");
+            Console.WriteLine($"Уведомление по электронной почте: {message}");
         }
     }
-    public class Server
+    public class Server // Класс Server
     {
-        private List<Observer> observers = new List<Observer>();
-        public void Attach(Observer observer)
+        private List<Observer> observers = new List<Observer>();    // Приватное поле observers типа List<Observer>, которое будет хранить список подписчиков.
+        public void Attach(Observer observer)   // Метод Attach(Observer observer), который будет добавлять подписчика в список подписчиков.
         {
             observers.Add(observer);
         }
-        public void Detach(Observer observer)
+        public void Detach(Observer observer)   // Метод Detach(Observer observer), который будет удалять подписчика из списка подписчиков.
         {
             observers.Remove(observer);
         }
-        public void Notify(string message)
+        public void Notify(string message)  // Метод Notify(string message), который будет уведомлять всех подписчиков об изменении состояния сервера.
         {
             foreach (var observer in observers)
             {
@@ -264,118 +273,119 @@ namespace _15PR_Kolbazov_RPM
         }
     }
     // --------------------------------------------------------------------------
-    public abstract class DocumentState
+    public abstract class DocumentState // Абстрактный класс DocumentState
     {
-        public abstract void Open();
-        public abstract void Save();
-        public abstract void Close();
-        public abstract void Print();
+        public abstract void Open();    // Абстрактные метод Open(), который будет вызываться при соответствующих действиях пользователя.
+        public abstract void Save();    // Абстрактные метод Save(), который будет вызываться при соответствующих действиях пользователя.
+        public abstract void Close();   // Абстрактные метод Close(), который будет вызываться при соответствующих действиях пользователя.
+        public abstract void Print();   // Абстрактные метод Print(), который будет вызываться при соответствующих действиях пользователя.
     }
-    public class NewState : DocumentState
+    public class NewState : DocumentState   // Класс NewState, который наследуются от DocumentState
     {
-        public override void Open()
+        public override void Open() // Реализация метода Open()
         {
             Console.WriteLine("Документ открыт!");
         }
-        public override void Save()
+        public override void Save() // Реализация метода Save()
         {
             Console.WriteLine("Документ должен быть сначала открыт перед сохранением!");
         }
-        public override void Close()
+        public override void Close()    // Реализация метода Close()
         {
             Console.WriteLine("Новый документ не требует закрытия!");
         }
-        public override void Print()
+        public override void Print()    // Реализация метода Print()
         {
             Console.WriteLine("Невозможно распечатать новый документ!");
         }
     }
-    public class OpenState : DocumentState
+    public class OpenState : DocumentState  // Класс OpenState, который наследуются от DocumentState
     {
-        public override void Open()
+        public override void Open() // Реализация метода Open()
         {
             Console.WriteLine("Документ уже открыт!");
         }
-        public override void Save()
+        public override void Save() // Реализация метода Save()
         {
             Console.WriteLine("Документ сохранён!");
         }
-        public override void Close()
+        public override void Close()    // Реализация метода Close()
         {
             Console.WriteLine("Документ закрыт!");
         }
-        public override void Print()
+        public override void Print()    // Реализация метода Print()
         {
             Console.WriteLine("Документ распечатан!");
         }
     }
-    public class SavedState : DocumentState
+    public class SavedState : DocumentState // Класс SavedState, который наследуются от DocumentState
     {
-        public override void Open()
+        public override void Open() // Реализация метода Open()
         {
             Console.WriteLine("Документ открыт из сохраненного состояния!");
         }
-        public override void Save()
+        public override void Save() // Реализация метода Save()
         {
             Console.WriteLine("Документ уже сохранён!");
         }
-        public override void Close()
+        public override void Close()    // Реализация метода Close()
         {
             Console.WriteLine("Документ закрыт!");
         }
-        public override void Print()
+        public override void Print()    // Реализация метода Print()
         {
             Console.WriteLine("Документ распечатан!");
         }
     }
-    public class ModifiedSate : DocumentState
+    public class ModifiedSate : DocumentState   // Класс ModifiedSate, который наследуются от DocumentState
     {
-        public override void Open()
+        public override void Open() // Реализация метода Open()
         {
             Console.WriteLine("Документ открыт с несохраненными изменениями!");
         }
-        public override void Save()
+        public override void Save() // Реализация метода Close()
         {
             Console.WriteLine("Изменения сохранены!");
         }
-        public override void Close()
+        public override void Close()    // Реализация метода Close()
         {
             Console.WriteLine("Документ закрыт. Изменения не были сохранены!");
         }
-        public override void Print()
+        public override void Print()    // Реализация метода Print()
         {
             Console.WriteLine("Документ распечатан с учётом изменений!");
         }
     }
-    public class Document
+    public class Document   // Класс Document
     {
-        private DocumentState state;
+        private DocumentState state;    // Приватное поле state типа DocumentState, которое будет хранить текущее состояние документа.
         public Document()
         {
             state = new NewState();
         }
-        public void SetState(DocumentState state)
+        public void SetState(DocumentState state)   // Метод SetState(DocumentState state), который будет устанавливать текущее состояние документа.
         {
             this.state = state;
         }
-        public void Open()
+        public void Open()  // Метод Open(), который будет вызывать соответствующие методы текущего состояния документа.
         {
             state.Open();
         }
-        public void Save()
+        public void Save()  // Метод Save(), который будет вызывать соответствующие методы текущего состояния документа.
         {
             state.Save();
         }
-        public void Close()
+        public void Close() // Метод Close(), который будет вызывать соответствующие методы текущего состояния документа.
         {
             state.Close();
         }
-        public void Print()
+        public void Print() // Метод Print(), который будет вызывать соответствующие методы текущего состояния документа.
         {
             state.Print();
         }
 
     }
+    // --------------------------------------------------------------------------
     internal class Program
     {
         static void Main(string[] args)
@@ -411,6 +421,9 @@ namespace _15PR_Kolbazov_RPM
                                 remote.SetCommand(lightSettings);
                                 remote.PressButton();
                                 break;
+                            default:
+                                Console.WriteLine("Некорректный выбор!");
+                                break;
                         }
                     }
                     break;
@@ -436,6 +449,9 @@ namespace _15PR_Kolbazov_RPM
                                 Command airConditionerSettings = new AirConditionerSettingsCommand(airConditioner);
                                 remote.SetCommand(airConditionerSettings);
                                 remote.PressButton();
+                                break;
+                            default:
+                                Console.WriteLine("Некорректный выбор!");
                                 break;
                         }
                     }
@@ -463,61 +479,79 @@ namespace _15PR_Kolbazov_RPM
                                 remote.SetCommand(tvSettings);
                                 remote.PressButton();
                                 break;
+                            default:
+                                Console.WriteLine("Некорректный выбор!");
+                                break;
                         }
                     }
                     break;
             }
             // --------------------------------------------------------------------------
-
             TaxCalculator taxCalculator = new TaxCalculator();
-            Console.WriteLine("Введите ваш доход: ");
+            Console.Write("\nВведите доход физическошо лица в российских рублях: ");
             decimal income = Convert.ToDecimal(Console.ReadLine());
-            Console.WriteLine("Выберите систему налогообложения: (1) Прогрессивная ставка, (2) Фиксированная ставка");
+            Console.WriteLine("\nВыберите систему налогообложения: (1) Прогрессивная ставка, (2) Фиксированная ставка");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
             {
                 case 1:
-                    taxCalculator.SetTaxCalculationStrategy(new ProgressiveTaxCalculationStrategy());
+                    ProgressiveTaxCalculationStrategy strategy = new ProgressiveTaxCalculationStrategy();
+                    taxCalculator.SetTaxCalculationStrategy(strategy);
                     break;
                 case 2:
-                    Console.WriteLine("Введите фиксированную ставку (например, 0.15 для 15%): ");
+                    Console.WriteLine("\nВведите фиксированную ставку (например, 0.13 для 13%): ");
                     decimal fixedRate = Convert.ToDecimal(Console.ReadLine());
-                    taxCalculator.SetTaxCalculationStrategy(new FixedRateTaxCalculationStrategy(fixedRate));
+                    FixedRateTaxCalculationStrategy fix = new FixedRateTaxCalculationStrategy(fixedRate);
+                    taxCalculator.SetTaxCalculationStrategy(fix);
                     break;
                 default:
-                    Console.WriteLine("Некорректный выбор.");
-                    return;
+                    Console.WriteLine("\nНекорректный выбор!");
+                    break;
             }
-            decimal tax = taxCalculator.CalculateTax(income); // Рассчитываем налог
-            Console.WriteLine($"Сумма налога: {tax}");
+            decimal tax = taxCalculator.CalculateTax(income);
+            Console.WriteLine($"\nСумма налога: {tax}");
             // --------------------------------------------------------------------------
+            Server server = new Server();
+            Logger logger = new Logger();
+            EmailNotifier emailNotifier = new EmailNotifier();
+            server.Attach(logger);
+            server.Attach(emailNotifier);
+            while (true)
+            {
+                Console.Write("\nВведите сообщение для уведомления (или 'выход' для выхода): ");
+                string input = Console.ReadLine();
 
-            Server server = new Server(); // Создаем экземпляр сервера
-            Logger logger = new Logger(); // Создаем экземпляр логгера
-            EmailNotifier emailNotifier = new EmailNotifier(); // Создаем экземпляр EmailNotifer
+                if (input.ToLower() == "выход")
+                    break;
 
-            server.Attach(logger); // Добавляем логгер в список подписчиков
-            server.Attach(emailNotifier); // Добавляем EmailNotifier в список подписчиков
-
-            server.Notify("Работает");
-            server.Notify("Ошибка 500");
-            server.Notify("Восстановлен");
+                server.Notify(input);
+            }
             // --------------------------------------------------------------------------
-
             Document doc = new Document(); // Создаем экземпляр документа
-
-            doc.Open();  // Открываем новый документ
-            doc.Save();  // Сохраняем документ 
-            doc.Print(); // Печатаем документ 
-
-            doc.Close(); // Закрываем документ 
-
-            doc.Open();  // Открываем документ снова 
-            doc.Save();  // Сохраняем его снова 
-
-
-
-
+            string str;
+            Console.Write("Введите команду (открыть, сохранить, закрыть, печать, выход): ");
+            while ((str = Console.ReadLine()) != "выход")
+            {
+                switch (str.ToLower())
+                {
+                    case "открыть":
+                        doc.Open();
+                        break;
+                    case "сохранить":
+                        doc.Save();
+                        break;
+                    case "закрыть":
+                        doc.Close();
+                        break;
+                    case "печать":
+                        doc.Print();
+                        break;
+                    default:
+                        Console.WriteLine("Неверный ввод!");
+                        break;
+                }
+                Console.Write("Введите следующую команду (открыть, сохранить, закрыть, распечатать, выход): ");
+            }
             Console.ReadLine();
         }
     }
